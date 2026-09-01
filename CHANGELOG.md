@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.5.3 - 2026-08-24
+## 1.5.2 - 2026-08-24
 
-- Rank prefix matches ahead of incidental contains matches for deterministic search results.
+- Prioritize exact user-name matches in filtered search results.
 
 ## 1.3.0 - 2026-08-06
 
