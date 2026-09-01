@@ -3,12 +3,12 @@
 use Liberu\Foundation\Search\Services\SearchService;
 use Liberu\PackageTestbench\TestUser;
 
-beforeEach(function () {
+beforeEach(function (): void {
     TestUser::factory()->create(['name' => 'Ada Lovelace', 'email' => 'ada@example.test']);
     TestUser::factory()->create(['name' => 'Grace Hopper', 'email' => 'grace@example.test']);
 });
 
-it('matches the term against name and email', function () {
+it('matches the term against name and email', function (): void {
     expect(app(SearchService::class)->searchUsers(['query' => 'Ada'])->pluck('name')->all())
         ->toBe(['Ada Lovelace']);
 
@@ -22,11 +22,11 @@ it('matches the term against name and email', function () {
  * simply not offering the filter — the same shape of defect as calling
  * `search()` on a model that never had it.
  */
-it('skips the role filter when the model has no role scope', function () {
+it('skips the role filter when the model has no role scope', function (): void {
     expect(app(SearchService::class)->searchUsers(['role' => 'admin'])->total())->toBe(2);
 });
 
-it('still applies the filters that need no scope at all', function () {
+it('still applies the filters that need no scope at all', function (): void {
     TestUser::factory()->create([
         'name' => 'Unverified Person',
         'email' => 'pending@example.test',

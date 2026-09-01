@@ -18,6 +18,8 @@ use Liberu\PackageTestbench\TestUser;
  */
 final class SearcherRegistryTest extends TestCase
 {
+    public $app;
+
     public function test_search_all_returns_only_the_types_the_composition_registered(): void
     {
         TestUser::factory()->count(2)->create();
@@ -51,7 +53,7 @@ final class SearcherRegistryTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->app->make(SearcherRegistry::class)->register('users', fn (array $filters) => $this->emptyPage());
+        $this->app->make(SearcherRegistry::class)->register('users', fn (array $filters): LengthAwarePaginator => $this->emptyPage());
     }
 
     private function registerWidgets(): void
