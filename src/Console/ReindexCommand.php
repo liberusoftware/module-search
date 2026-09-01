@@ -8,10 +8,8 @@ use Liberu\Foundation\Search\Registry\IndexableRegistry;
 
 final class ReindexCommand extends Command
 {
-    #[\Override]
     protected $signature = 'search:reindex {type?}';
 
-    #[\Override]
     protected $description = 'Rebuild authorized search indexes through the configured provider';
 
     public function handle(IndexableRegistry $registry, SearchIndexer $indexer): int

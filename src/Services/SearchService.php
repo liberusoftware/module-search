@@ -71,7 +71,7 @@ class SearchService
     public function searchAll(array $filters): array
     {
         $requested = isset($filters['types']) ? (array) $filters['types'] : null;
-        $filters['per_page'] ??= 5;
+        $filters['per_page'] = $filters['per_page'] ?? 5;
 
         $results = [];
 
