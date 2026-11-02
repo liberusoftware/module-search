@@ -35,10 +35,9 @@ trait Searchable
             }
         });
 
-        // Stable relevance ordering prevents a broad contains match (for example,
-        // "Rosemarie Johns") from outranking a direct prefix match ("John Doe")
-        // when records share the same timestamp. The column list is supplied by
-        // the model, while the user input remains parameter-bound.
+        // Prefer prefix matches over incidental contains matches. User input
+        // remains parameter-bound while the model-owned column names form the
+        // trusted SQL expression.
         if ($columns !== []) {
             $rank = implode(' ', array_map(
                 static fn (int $index, string $column): string => "WHEN {$column} LIKE ? THEN {$index}",
